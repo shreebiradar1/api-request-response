@@ -2,7 +2,7 @@ package org.dnyanyog.controller;
 
 import java.util.List;
 
-
+import org.dnyanyog.dto.User;
 import org.dnyanyog.dto.UserRequest;
 import org.dnyanyog.dto.UserResponse;
 import org.dnyanyog.service.UserService;
@@ -27,7 +27,7 @@ public class UserController {
 	}
 	
 	@GetMapping(path = "/user")
-	public List<UserResponse> getUser(){
+	public UserResponse getUser(){
 		return userService.getAllUser();
 	}
 }

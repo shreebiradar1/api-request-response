@@ -1,39 +1,21 @@
 package org.dnyanyog.dto;
+import java.util.List;
+
 import org.springframework.stereotype.Component;
 
 @Component
 public class ProductResponse {
-	private int id;
-	private String name;
-	private int price;
-	private int quantity;
 	
 	private String code;
 	private String msg;
 	
-	public int getId() {
-		return id;
+	List<Product> products;
+	
+	public List<Product> getProducts() {
+		return products;
 	}
-	public void setId(int id) {
-		this.id = id;
-	}
-	public String getName() {
-		return name;
-	}
-	public void setName(String name) {
-		this.name = name;
-	}
-	public int getPrice() {
-		return price;
-	}
-	public void setPrice(int price) {
-		this.price = price;
-	}
-	public int getQuantity() {
-		return quantity;
-	}
-	public void setQuantity(int quantity) {
-		this.quantity = quantity;
+	public void setProducts(List<Product> products) {
+		this.products = products;
 	}
 	public String getCode() {
 		return code;
