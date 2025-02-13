@@ -3,13 +3,12 @@ package org.dnyanyog.dto;
 import org.springframework.stereotype.Component;
 
 @Component
-public class User {
+public class Users {
 	private int id;
 	private String firstName;
 	private String lastName;
 	private String email;
 	private String mobile;
-	private String loginName;
 	
 	public int getId() {
 		return id;
@@ -41,10 +40,5 @@ public class User {
 	public void setMobile(String mobile) {
 		this.mobile = mobile;
 	}
-	public String getLoginName() {
-		return loginName;
-	}
-	public void setLoginName(String loginName) {
-		this.loginName = loginName;
-	}
+
 }

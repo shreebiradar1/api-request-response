@@ -32,7 +32,7 @@ public class DBUtil {
 		}
 		
 	}
-
+ 
 
 	public static ResultSet resultQuery(String query) {
 		try {

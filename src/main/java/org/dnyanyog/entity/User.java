@@ -11,18 +11,40 @@ public class User {
 
 	@Id
 	long id;
-	
+
 	@Column
 	String firstName;
-	
+
 	@Column
 	String lastName;
-	
+
 	@Column
 	String email;
-	
+
 	@Column
 	String mobile;
+
+	@Column
+	String loginName;
+
+	@Column
+	String password;
+
+	public String getLoginName() {
+		return loginName;
+	}
+
+	public void setLoginName(String loginName) {
+		this.loginName = loginName;
+	}
+
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
+	}
 
 	public long getId() {
 		return id;
@@ -63,7 +85,5 @@ public class User {
 	public void setMobile(String mobile) {
 		this.mobile = mobile;
 	}
-	
-	
-	
+
 }

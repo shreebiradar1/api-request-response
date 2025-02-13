@@ -13,7 +13,7 @@ public class Product {
 	long id;
 	
 	@Column
-	String productName;
+	String name;
 	
 	@Column
 	String quantity;
@@ -32,12 +32,12 @@ public class Product {
 		this.id = id;
 	}
 
-	public String getProductName() {
-		return productName;
+	public String getname() {
+		return name;
 	}
 
-	public void setProductName(String productName) {
-		this.productName = productName;
+	public void setname(String name) {
+		this.name = name;
 	}
 
 	public String getQuantity() {

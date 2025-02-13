@@ -9,8 +9,6 @@ public class UserRequest {
 	private String lastName;
 	private String email;
 	private String mobile;
-	private String loginName;
-	private String password;
 
 	public int getId() {
 		return id;
@@ -52,19 +50,4 @@ public class UserRequest {
 		this.mobile = mobile;
 	}
 
-	public String getLoginName() {
-		return loginName;
-	}
-
-	public void setLoginName(String loginName) {
-		this.loginName = loginName;
-	}
-
-	public String getPassword() {
-		return password;
-	}
-
-	public void setPassword(String password) {
-		this.password = password;
-	}
 }
