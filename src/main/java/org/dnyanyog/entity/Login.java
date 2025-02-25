@@ -10,7 +10,7 @@ import jakarta.persistence.Table;
 public class Login {
 
 	@Id
-	private Long id;
+	private Long login_id;
 
 	@Column
 	private String userName;
@@ -18,12 +18,23 @@ public class Login {
 	@Column
 	private String password;
 
-	public Long getId() {
-		return id;
+	@Column
+	private String email;
+
+	public String getEmail() {
+		return email;
 	}
 
-	public void setId(Long id) {
-		this.id = id;
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+	public Long getLogin_id() {
+		return login_id;
+	}
+
+	public void setLogin_id(Long login_id) {
+		this.login_id = login_id;
 	}
 
 	public String getUserName() {

@@ -1,43 +1,49 @@
 package org.dnyanyog.entity;
 
+import org.springframework.stereotype.Component;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 
+@Component
 @Entity
 @Table
 public class Product {
-	
+
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Id
-	long id;
-	
+	long product_id;
+
 	@Column
-	String name;
-	
+	String prodName;
+
 	@Column
 	String quantity;
-	
+
 	@Column
-	String Price;
-	
+	String price;
+
 	@Column
 	String category;
 
-	public long getId() {
-		return id;
+	public long getProduct_id() {
+		return product_id;
 	}
 
-	public void setId(long id) {
-		this.id = id;
+	public void setProduct_id(long product_id) {
+		this.product_id = product_id;
 	}
 
-	public String getname() {
-		return name;
+	public String getProdName() {
+		return prodName;
 	}
 
-	public void setname(String name) {
-		this.name = name;
+	public void setProdName(String prodName) {
+		this.prodName = prodName;
 	}
 
 	public String getQuantity() {
@@ -49,11 +55,11 @@ public class Product {
 	}
 
 	public String getPrice() {
-		return Price;
+		return price;
 	}
 
 	public void setPrice(String price) {
-		Price = price;
+		this.price = price;
 	}
 
 	public String getCategory() {
@@ -63,7 +69,5 @@ public class Product {
 	public void setCategory(String category) {
 		this.category = category;
 	}
-	
-	
-	
+
 }

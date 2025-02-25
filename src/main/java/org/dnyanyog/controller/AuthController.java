@@ -12,12 +12,14 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/auth")
 public class AuthController {
+
 	@Autowired
 	AuthService service;
-	
-	@PostMapping(path = "/login")
+
+	@PostMapping(path = "/login", produces = { "application/json", "application/xml" }, consumes = { "application/json",
+			"application/xml" })
 	public LoginResponse login(@RequestBody LoginRequest request) {
-		
+
 		return service.login(request.getLoginName(), request.getPassword());
 	}
 }

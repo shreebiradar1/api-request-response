@@ -1,16 +1,21 @@
 package org.dnyanyog.entity;
 
+import org.springframework.stereotype.Component;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 
+@Component
 @Entity
 @Table
 public class User {
 
-	@Id
-	long id;
+	@Id@GeneratedValue(strategy = GenerationType.IDENTITY)
+	long userId;
 
 	@Column
 	String firstName;
@@ -24,34 +29,12 @@ public class User {
 	@Column
 	String mobile;
 
-	@Column
-	String loginName;
-
-	@Column
-	String password;
-
-	public String getLoginName() {
-		return loginName;
+	public long getUserId() {
+		return userId;
 	}
 
-	public void setLoginName(String loginName) {
-		this.loginName = loginName;
-	}
-
-	public String getPassword() {
-		return password;
-	}
-
-	public void setPassword(String password) {
-		this.password = password;
-	}
-
-	public long getId() {
-		return id;
-	}
-
-	public void setId(long id) {
-		this.id = id;
+	public void setId(long userId) {
+		this.userId = userId;
 	}
 
 	public String getFirstName() {

@@ -1,111 +1,65 @@
 package org.dnyanyog.service;
 
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.List;
 
-import org.dnyanyog.common.DBUtil;
-import org.dnyanyog.dto.Product;
 import org.dnyanyog.dto.ProductRequest;
 import org.dnyanyog.dto.ProductResponse;
+import org.dnyanyog.entity.Product;
+import org.dnyanyog.repo.ProductRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
 @Component
+@Service
 public class ProductService {
-
+	@Autowired
+	ProductRepo repo;
+	@Autowired
+	Product product;
 	@Autowired
 	ProductResponse response;
-	
-	@Autowired
-	Product products;
-	
-	
-	// Add product
-	public ProductResponse addProduct(ProductRequest product) {
-		String query = "Insert into product (id, name, price, quantity) values (" + product.getId() + ", '"
-				+ product.getName() + "', " + product.getPrice() + ", " + product.getQuantity() + ");";
 
-		try {
-			DBUtil.executeQuery(query);
-			products.setId(product.getId());
-			products.setName(product.getName());
-			products.setPrice(product.getPrice());
-			products.setQuantity(product.getQuantity());
-			
-			List<Product> productList = new ArrayList<>();
-			productList.add(products);
-			response.setProducts(productList);
+	// Add Product
+	public ProductResponse saveProduct(ProductRequest req) {
+		Product prod = new Product();
+		prod.setProduct_id(req.getId());
+		prod.setProdName(req.getProductName());
+		prod.setPrice(req.getPrice());
+		prod.setQuantity(req.getQuantity());
+		prod.setCategory(req.getCategory());
 
-			response.setCode("0000");
-			response.setMsg("New Product Added Successfully");
-			return response;
-		} catch (SQLException e) {
-			response.setCode("911");
-			response.setMsg("Some error occured");
-			e.printStackTrace();
-			return response;
-		}
+		repo.save(prod);
+
+		response.setCode("0000");
+		response.setMsg("Everthing is working fine");
+		response.setRequest(req);
+
+		return response;
 
 	}
 
-	// Display Product
-	public ProductResponse showproduct() {
-		String query = "Select * from product";
+	// Search by name
+	public Product getByName(String name) {
+		return repo.findByProdName(name);
+	}
 
-		ResultSet result = DBUtil.resultQuery(query);
-
-		List<Product> productList = new ArrayList<>();
-		try {
-			while (result.next()) {
-				Product products = new Product();
-				products.setId(result.getInt(1));
-				products.setName(result.getString(2));
-				products.setPrice(result.getInt(3));
-				products.setQuantity(result.getInt(4));
-
-				productList.add(products);
-				response.setProducts(productList);
-				
-			}
-			response.setCode("0000");
-			response.setMsg("Product fetched");
-			
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
+	public ProductResponse removeProduct(String name) {
+		if (null == repo.findByProdName(name)) {
 			response.setCode("911");
-			response.setMsg("Displaying product failed");
-			e.printStackTrace();
+			response.setMsg("Name Field can not be empty");
+		}
+		int result = repo.deleteByProdName(name);
+		if (result > 0) {
+			response.setCode("0000");
+			response.setMsg("Product Delete Successful");
 		}
 		return response;
 	}
 
-	// Search Product
-	public ProductResponse searchProduct(String name) {
-		String query = "Select * from product where name = '" + name + "';";
+	// Display all
+	public List<Product> getProduct() {
 
-		ResultSet rs = DBUtil.resultQuery(query);
-		try {
-			rs.next();
-			products.setId(rs.getInt(1));
-			products.setName(rs.getString(2));
-			products.setPrice(rs.getInt(3));
-			products.setQuantity(rs.getInt(4));
-			
-			List<Product> productList = new ArrayList<>();
-			productList.add(products);
-			response.setProducts(productList);
-			response.setCode("0000");
-			response.setMsg("Product found");
-			return response;
-
-		} catch (SQLException e) {
-			response.setMsg("Product not found");
-			
-			e.printStackTrace();
-			return response;
-		}
-		
+		return repo.findAll();
 	}
 }

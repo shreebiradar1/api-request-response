@@ -1,21 +1,36 @@
 package org.dnyanyog.dto;
 
+import java.util.List;
+
+import org.dnyanyog.entity.User;
 import org.springframework.stereotype.Component;
 
 @Component
 public class UserRequest {
-	private int id;
+	private long id;
 	private String firstName;
 	private String lastName;
 	private String email;
 	private String mobile;
+	private String loginName;
+	private String password;
 
-	public int getId() {
+	private List<User> userList;
+
+	public List<User> getUserList() {
+		return userList;
+	}
+
+	public void setUserList(List<User> userList) {
+		this.userList = userList;
+	}
+
+	public long getId() {
 		return id;
 	}
 
-	public void setId(int id) {
-		this.id = id;
+	public void setId(long id2) {
+		this.id = id2;
 	}
 
 	public String getLastName() {
@@ -48,6 +63,22 @@ public class UserRequest {
 
 	public void setMobile(String mobile) {
 		this.mobile = mobile;
+	}
+
+	public String getLoginName() {
+		return loginName;
+	}
+
+	public void setLoginName(String loginName) {
+		this.loginName = loginName;
+	}
+
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
 	}
 
 }
